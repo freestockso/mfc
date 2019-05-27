@@ -1,0 +1,14 @@
+目前已经有了很成熟的开源写日志Log的系统，功能也很完善，但是使用起来也比较麻烦。一个小函数来实现最最简单的写日志Log的功能，只需记录时间和你需要输出自己加入的内容，比较方便。代码如下：
+
+
+void WriteLog(char * szLog)
+{
+                 SYSTEMTIME st;
+                 GetLocalTime(&st);
+                 FILE *fp;
+                 fp=fopen("D:\\log.txt","at");
+                 fprintf(fp,"MyLogInfo: %d:%d:%d:%d ",st.wHour,st.wMinute,st.wSecond,st.wMilliseconds);
+                 fprintf(fp,szLog);
+                 fclose(fp);
+                 OutputDebugStringA(szLog);
+}
